@@ -1,0 +1,10 @@
+// Falina motion tokens — cinematic but calm. Honor reduced-motion.
+
+$falina-duration-instant: 100ms;
+$falina-duration-fast: 200ms;
+$falina-duration-normal: 320ms;
+$falina-duration-slow: 640ms;
+
+$falina-easing-standard: cubic-bezier(0.4, 0, 0.2, 1);
+$falina-easing-cinematic: cubic-bezier(0.22, 1, 0.36, 1);
+$falina-easing-glow: cubic-bezier(0.6, 0, 0.2, 1);

@@ -1,0 +1,49 @@
+// Falina color tokens.
+// Ancient ritual × modern AI × luxury mobile — deep charcoal, warm ivory,
+// muted gold, coffee brown. Components must use these tokens, never raw hex.
+
+// -- Raw palette ------------------------------------------------------------
+$falina-charcoal-950: #12100e;
+$falina-charcoal-900: #1a1714; // deep charcoal — primary background
+$falina-charcoal-800: #242019; // surface
+$falina-charcoal-700: #2e2922; // elevated surface
+$falina-charcoal-600: #3a342b;
+
+$falina-ivory-100: #f4ebdd; // warm ivory — primary text
+$falina-ivory-200: #eae0cf;
+$falina-ivory-300: #d9cfbc;
+
+$falina-gold-300: #dbc08c;
+$falina-gold-400: #c9a96a; // muted gold — accent
+$falina-gold-500: #b08f52;
+$falina-gold-600: #8f6f3c;
+
+$falina-coffee-600: #6b4a35; // coffee brown
+$falina-coffee-700: #553a2a;
+$falina-coffee-800: #402a1e;
+
+$falina-status-success: #7fb57f;
+$falina-status-warning: #d9a45b;
+$falina-status-error: #d96b5b;
+
+// -- Semantic tokens --------------------------------------------------------
+$falina-color-background: $falina-charcoal-900;
+$falina-color-surface: $falina-charcoal-800;
+$falina-color-surface-elevated: $falina-charcoal-700;
+$falina-color-surface-tinted: $falina-coffee-800;
+
+$falina-color-text-primary: $falina-ivory-100;
+$falina-color-text-secondary: rgba($falina-ivory-100, 0.7);
+$falina-color-text-muted: rgba($falina-ivory-100, 0.5);
+$falina-color-text-on-accent: $falina-charcoal-950;
+
+$falina-color-accent: $falina-gold-400;
+$falina-color-accent-soft: rgba($falina-gold-400, 0.16);
+$falina-color-accent-strong: $falina-gold-300;
+
+$falina-color-border: rgba($falina-ivory-100, 0.12);
+$falina-color-border-strong: rgba($falina-gold-400, 0.35);
+
+$falina-color-success: $falina-status-success;
+$falina-color-warning: $falina-status-warning;
+$falina-color-error: $falina-status-error;

@@ -1,0 +1,27 @@
+// Falina typography tokens.
+// Display serif for the mystical voice, clean sans for body text.
+
+$falina-font-display: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+$falina-font-body: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+
+// Type scale (mobile-first).
+$falina-font-size-xs: 0.75rem;
+$falina-font-size-sm: 0.875rem;
+$falina-font-size-md: 1rem;
+$falina-font-size-lg: 1.125rem;
+$falina-font-size-xl: 1.25rem;
+$falina-font-size-2xl: 1.5rem;
+$falina-font-size-3xl: 2rem;
+$falina-font-size-4xl: 2.75rem;
+
+$falina-font-weight-regular: 400;
+$falina-font-weight-medium: 500;
+$falina-font-weight-semibold: 600;
+$falina-font-weight-bold: 700;
+
+$falina-line-height-tight: 1.2;
+$falina-line-height-normal: 1.5;
+$falina-line-height-relaxed: 1.7;
+
+$falina-letter-spacing-display: 0.06em;
+$falina-letter-spacing-caps: 0.18em;

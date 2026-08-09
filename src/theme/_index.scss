@@ -1,0 +1,13 @@
+// Falina theme — the single entry point for the design system.
+// Components import this file and use the semantic tokens above.
+//
+//   @use 'theme/index' as theme;
+//   background: theme.$falina-color-background;
+
+@forward 'tokens/colors';
+@forward 'tokens/typography';
+@forward 'tokens/spacing';
+@forward 'tokens/radii';
+@forward 'tokens/shadows';
+@forward 'tokens/motion';
+@forward 'tokens/z-index';

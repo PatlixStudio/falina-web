@@ -1,0 +1,55 @@
+// Falina global styles.
+
+@use 'theme/index' as theme;
+
+:root {
+  color-scheme: dark;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  background: theme.$falina-color-background;
+  color: theme.$falina-color-text-primary;
+  font-family: theme.$falina-font-body;
+  font-size: theme.$falina-font-size-md;
+  line-height: theme.$falina-line-height-normal;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+button {
+  font-family: inherit;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: theme.$falina-font-display;
+  font-weight: theme.$falina-font-weight-semibold;
+  letter-spacing: theme.$falina-letter-spacing-display;
+  margin: 0;
+}
+
+a {
+  color: theme.$falina-color-accent;
+  text-decoration: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

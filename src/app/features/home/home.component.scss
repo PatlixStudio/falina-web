@@ -1,0 +1,81 @@
+@use 'theme/index' as theme;
+
+.splash {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: theme.$falina-space-12;
+  min-height: 100vh;
+  padding: theme.$falina-space-8 theme.$falina-space-6;
+  background:
+    radial-gradient(
+      ellipse 80% 55% at 50% -5%,
+      rgba(theme.$falina-gold-400, 0.14),
+      transparent 70%
+    ),
+    theme.$falina-color-background;
+}
+
+.brand {
+  text-align: center;
+
+  &__orb {
+    display: inline-block;
+    width: 4.5rem;
+    height: 4.5rem;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, theme.$falina-gold-300, theme.$falina-gold-600);
+    box-shadow: theme.$falina-shadow-glow;
+    margin-bottom: theme.$falina-space-6;
+  }
+
+  &__wordmark {
+    font-size: theme.$falina-font-size-4xl;
+    letter-spacing: theme.$falina-letter-spacing-caps;
+    color: theme.$falina-color-text-primary;
+  }
+
+  &__tagline {
+    margin: theme.$falina-space-2 0 0;
+    color: theme.$falina-color-accent;
+    font-size: theme.$falina-font-size-lg;
+    letter-spacing: theme.$falina-letter-spacing-display;
+  }
+
+  &__quote {
+    margin: theme.$falina-space-6 auto 0;
+    max-width: 22rem;
+    color: theme.$falina-color-text-secondary;
+    font-family: theme.$falina-font-display;
+    font-size: theme.$falina-font-size-lg;
+    line-height: theme.$falina-line-height-relaxed;
+  }
+}
+
+.pillars {
+  display: grid;
+  gap: theme.$falina-space-4;
+
+  .pillar {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    padding: theme.$falina-space-4;
+    border: 1px solid theme.$falina-color-border;
+    border-radius: theme.$falina-radius-lg;
+    background: theme.$falina-color-surface;
+    box-shadow: theme.$falina-shadow-1;
+
+    &__name {
+      font-family: theme.$falina-font-display;
+      font-size: theme.$falina-font-size-xl;
+      color: theme.$falina-color-text-primary;
+    }
+
+    &__line {
+      color: theme.$falina-color-text-muted;
+      font-size: theme.$falina-font-size-sm;
+      letter-spacing: theme.$falina-letter-spacing-display;
+    }
+  }
+}
