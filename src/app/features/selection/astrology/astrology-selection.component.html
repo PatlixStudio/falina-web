@@ -1,0 +1,64 @@
+<ion-content class="sel-page">
+  <main class="sel">
+  <header class="sel__header">
+    <a class="sel__back" routerLink="/">← Home</a>
+    <h1 class="sel__title">Astrology</h1>
+    <p class="sel__subtitle">
+      Tell us where and when you entered the world. Your chart is cast from the
+      stars' positions at that moment.
+    </p>
+  </header>
+
+  <section class="sel__group">
+    <h2 class="sel__group-title">Birth details</h2>
+    <form class="astro__form" [formGroup]="form">
+      <label class="astro__field">
+        <span class="astro__label">Birth date</span>
+        <input class="astro__input" type="date" formControlName="birthDate" />
+      </label>
+
+      <label class="astro__field">
+        <span class="astro__label">Birth time (optional)</span>
+        <input class="astro__input" type="time" formControlName="birthTime" />
+      </label>
+
+      <label class="astro__field">
+        <span class="astro__label">Birth place (optional)</span>
+        <input
+          class="astro__input"
+          type="text"
+          formControlName="birthLocation"
+          placeholder="Istanbul, Türkiye"
+        />
+      </label>
+    </form>
+  </section>
+
+  <section class="sel__group">
+    <h2 class="sel__group-title">Focus</h2>
+    <div class="sel__chips">
+      @for (focus of focuses; track focus) {
+        <button
+          type="button"
+          class="sel__chip"
+          [class.is-selected]="selectedFocus() === focus"
+          (click)="selectFocus(focus)"
+        >
+          {{ humanize(focus) }}
+        </button>
+      }
+    </div>
+  </section>
+
+  <footer class="sel__footer">
+    <button
+      type="button"
+      class="sel__begin"
+      [disabled]="form.invalid"
+      (click)="begin()"
+    >
+      Begin reading
+    </button>
+  </footer>
+  </main>
+</ion-content>

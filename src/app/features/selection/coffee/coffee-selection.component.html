@@ -1,0 +1,108 @@
+<ion-content class="sel-page">
+  <main class="sel">
+    <header class="sel__header">
+      <a class="sel__back" routerLink="/">← Home</a>
+      <h1 class="sel__title">Coffee</h1>
+      <p class="sel__subtitle">
+        Finish your cup, photograph the grounds, and let the oracle read the
+        shapes the coffee left behind.
+      </p>
+    </header>
+
+    <section class="sel__group">
+      <h2 class="sel__group-title">Your cup</h2>
+
+      <div class="coffee__dropzone">
+        @if (!imageDataUrl()) {
+          <label class="coffee__upload" for="coffee-cup">
+            <span class="coffee__upload-icon" aria-hidden="true">☕</span>
+            <span class="coffee__upload-title">Photograph the grounds</span>
+            <span class="coffee__upload-hint">JPEG, PNG or WebP · up to 6 MB</span>
+            <input
+              id="coffee-cup"
+              type="file"
+              accept="image/jpeg,image/png,image/webp"
+              (change)="onFileSelected($event)"
+            />
+          </label>
+        } @else {
+          <div class="coffee__preview">
+            <img class="coffee__preview-img" [src]="imageDataUrl()!" alt="Your coffee cup" />
+            <button type="button" class="coffee__preview-clear" (click)="clearImage()">
+              Choose a different photo
+            </button>
+          </div>
+        }
+      </div>
+
+      @if (analyzeState() === 'analyzing' || analyzeState() === 'uploading') {
+        <p class="coffee__analyzing">Reading the grounds…</p>
+      }
+
+      @if (analyzeError(); as message) {
+        <p class="coffee__error">{{ message }}</p>
+      }
+
+      @if (observations().length) {
+        <div class="coffee__observations">
+          <h3 class="coffee__obs-title">What the oracle sees</h3>
+          <ul class="coffee__obs-list">
+            @for (obs of observations(); track $index) {
+              <li class="coffee__obs">
+                <span class="coffee__obs-name">{{ humanize(obs.symbol) }}</span>
+                <span class="coffee__obs-loc">{{ obs.location }}</span>
+              </li>
+            }
+          </ul>
+        </div>
+      }
+    </section>
+
+    <section class="sel__group">
+      <h2 class="sel__group-title">What is on your mind?</h2>
+      <div class="sel__chips">
+        @for (intent of intents; track intent) {
+          <button
+            type="button"
+            class="sel__chip"
+            [class.is-selected]="selectedIntent() === intent"
+            (click)="selectIntent(intent)"
+          >
+            {{ humanize(intent) }}
+          </button>
+        }
+      </div>
+    </section>
+
+    <section class="sel__group">
+      <h2 class="sel__group-title">
+        Symbols you see ({{ selectedSymbols().length }}/{{ maxSymbols }})
+      </h2>
+      <div class="sel__grid">
+        @for (symbol of symbols; track symbol.code) {
+          <button
+            type="button"
+            class="sel__tile"
+            [class.is-selected]="selectedSymbols().includes(symbol.code)"
+            [disabled]="!selectedSymbols().includes(symbol.code) && selectedSymbols().length >= maxSymbols"
+            (click)="toggleSymbol(symbol.code)"
+          >
+            <span class="sel__tile-name">{{ humanize(symbol.code) }}</span>
+            <span class="sel__tile-hint">{{ symbol.keywords.join(', ') }}</span>
+          </button>
+        }
+      </div>
+    </section>
+
+    <footer class="sel__footer">
+      <button
+        type="button"
+        class="sel__begin"
+        [disabled]="!selectedIntent() || selectedSymbols().length === 0"
+        (click)="begin()"
+      >
+        Begin reading
+      </button>
+    </footer>
+  </main>
+</ion-content>

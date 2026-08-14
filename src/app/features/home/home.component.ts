@@ -1,28 +1,24 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { IonContent } from '@ionic/angular/standalone';
 import { environment } from '../../../environments/environment';
-
-interface Pillar {
-  name: string;
-  line: string;
-}
+import { AuthService } from '../../auth/auth.service';
 
 /**
- * Home placeholder rendered by the Phase 1 shell. The full Home experience
- * (today's energy, reading cards, weekly insight) arrives in Phase 2.
+ * Home splash. Reading entry points live on the Read tab; home is a calm
+ * welcome with a single call to action.
  */
 @Component({
   selector: 'falina-home',
   standalone: true,
+  imports: [RouterLink, IonContent],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent {
+  private readonly auth = inject(AuthService);
+
   readonly appName = environment.appName;
   readonly tagline = environment.tagline;
-
-  readonly pillars: Pillar[] = [
-    { name: 'Coffee', line: 'See the signs.' },
-    { name: 'Tarot', line: 'Ask the cards.' },
-    { name: 'Astrology', line: 'Read your sky.' },
-  ];
+  readonly isAuthenticated = this.auth.isAuthenticated;
 }

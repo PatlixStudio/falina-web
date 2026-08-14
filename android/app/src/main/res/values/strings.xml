@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Falina</string>
+    <string name="title_activity_main">Falina</string>
+    <string name="package_name">dev.falina.app</string>
+    <string name="custom_url_scheme">dev.falina.app</string>
+</resources>

@@ -1,0 +1,525 @@
+@use '../selection-common' as common;
+@use 'theme/index' as theme;
+
+.tarot__intent {
+  display: flex;
+  flex-direction: column;
+  gap: theme.$falina-space-3;
+}
+
+.tarot__intent-chips,
+.tarot__spread-chips {
+  justify-content: center;
+}
+
+.sel.tarot {
+  max-width: 64rem;
+}
+
+// -- Spread picker: rectangle option cards -------------------------------------
+.tarot__spread {
+  display: flex;
+  flex-direction: column;
+  gap: theme.$falina-space-3;
+}
+
+.tarot__spread-options {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: theme.$falina-space-3;
+}
+
+.tarot__spread-option {
+  display: flex;
+  align-items: flex-start;
+  gap: theme.$falina-space-3;
+  padding: theme.$falina-space-4;
+  border: 1px solid theme.$falina-color-border;
+  border-radius: theme.$falina-radius-lg;
+  background: theme.$falina-color-surface;
+  color: theme.$falina-color-text-primary;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    border-color 200ms ease,
+    background 200ms ease,
+    box-shadow 200ms ease,
+    transform 200ms ease;
+
+  &:hover {
+    border-color: theme.$falina-color-accent;
+    transform: translateY(-2px);
+  }
+
+  &.is-selected {
+    border-color: theme.$falina-color-accent;
+    background: theme.$falina-color-accent-soft;
+    box-shadow: theme.$falina-shadow-glow;
+  }
+}
+
+.tarot__spread-count {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: 2.6rem;
+  height: 2.6rem;
+  border-radius: theme.$falina-radius-md;
+  background: theme.$falina-color-accent;
+  color: theme.$falina-color-text-on-accent;
+  font-family: theme.$falina-font-display;
+  font-size: theme.$falina-font-size-xl;
+  font-weight: theme.$falina-font-weight-semibold;
+}
+
+.tarot__spread-meta {
+  display: flex;
+  flex-direction: column;
+  gap: theme.$falina-space-1;
+  min-width: 0;
+}
+
+.tarot__spread-title {
+  font-family: theme.$falina-font-display;
+  font-size: theme.$falina-font-size-md;
+  font-weight: theme.$falina-font-weight-medium;
+}
+
+.tarot__spread-premium {
+  margin-left: theme.$falina-space-1;
+  padding: 1px theme.$falina-space-2;
+  border-radius: theme.$falina-radius-sm;
+  background: theme.$falina-color-accent-soft;
+  color: theme.$falina-color-accent-strong;
+  font-size: 0.65rem;
+  letter-spacing: theme.$falina-letter-spacing-caps;
+  text-transform: uppercase;
+}
+
+.tarot__spread-option.is-locked {
+  opacity: 0.72;
+
+  .tarot__spread-count {
+    background: theme.$falina-color-text-muted;
+  }
+}
+
+.tarot__spread-positions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: theme.$falina-space-1;
+}
+
+.tarot__spread-pos {
+  padding: 1px theme.$falina-space-2;
+  border: 1px solid theme.$falina-color-border;
+  border-radius: theme.$falina-radius-sm;
+  background: theme.$falina-color-panel;
+  color: theme.$falina-color-text-muted;
+  font-size: 0.65rem;
+  letter-spacing: theme.$falina-letter-spacing-caps;
+  text-transform: uppercase;
+}
+
+// -- Premium upgrade banner ------------------------------------------------------
+.tarot__upgrade {
+  display: flex;
+  flex-direction: column;
+  gap: theme.$falina-space-4;
+  padding: theme.$falina-space-4;
+  border: 1px solid theme.$falina-color-border-strong;
+  border-radius: theme.$falina-radius-lg;
+  background: theme.$falina-color-surface-tinted;
+  box-shadow: theme.$falina-shadow-glow;
+}
+
+.tarot__upgrade-text {
+  margin: 0;
+  color: theme.$falina-color-text-primary;
+  line-height: theme.$falina-line-height-relaxed;
+}
+
+.tarot__upgrade-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: theme.$falina-space-3;
+}
+
+.tarot__upgrade-btn {
+  padding: theme.$falina-space-2 theme.$falina-space-4;
+  border-radius: theme.$falina-radius-pill;
+  background: theme.$falina-color-accent;
+  color: theme.$falina-color-text-on-accent;
+  font-weight: theme.$falina-font-weight-semibold;
+}
+
+.tarot__upgrade-close {
+  border: none;
+  background: none;
+  padding: theme.$falina-space-2 theme.$falina-space-3;
+  color: theme.$falina-color-text-muted;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+// -- Deck stage ---------------------------------------------------------------
+.tarot__stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: theme.$falina-space-6;
+  min-height: 22rem;
+  perspective: 1600px;
+}
+
+// A card back, shared by the grid and the reveal cards (.deck-back class).
+.deck-back {
+  background:
+    radial-gradient(
+      circle at 50% 26%,
+      rgba(theme.$falina-gold-400-rgb, 0.2),
+      transparent 62%
+    ),
+    radial-gradient(
+      circle at 84% 80%,
+      rgba(theme.$falina-coffee-600-rgb, 0.12),
+      transparent 55%
+    ),
+    linear-gradient(150deg, theme.$falina-charcoal-800, theme.$falina-charcoal-950);
+  box-shadow:
+    inset 0 0 0 1px rgba(theme.$falina-gold-400-rgb, 0.45),
+    inset 0 0 0 4px theme.$falina-charcoal-900;
+}
+
+// -- Face-down grid of the full 78-card deck -----------------------------------
+.deck__grid {
+  display: grid;
+  grid-template-columns: repeat(26, minmax(0, 1fr));
+  gap: theme.$falina-space-1;
+  width: min(56rem, 100%);
+  padding: theme.$falina-space-2;
+
+  // Once all are held, quiet the untouched cards so the choice stands out.
+  &.is-full .deck__grid-card:not(.is-picked) {
+    opacity: 0.35;
+  }
+}
+
+.deck__grid-card {
+  position: relative;
+  aspect-ratio: 3 / 5;
+  border: none;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+  border-radius: theme.$falina-radius-sm;
+  transition:
+    transform theme.$falina-duration-fast theme.$falina-easing-standard,
+    box-shadow theme.$falina-duration-normal theme.$falina-easing-standard,
+    opacity theme.$falina-duration-fast theme.$falina-easing-standard;
+
+  &:hover {
+    transform: translateY(-4px);
+    z-index: 5;
+  }
+
+  &:focus-visible {
+    outline: 2px solid theme.$falina-color-accent;
+    outline-offset: 2px;
+  }
+
+  &.is-picked {
+    transform: translateY(-5px) scale(1.06);
+    z-index: 6;
+    box-shadow:
+      0 0 0 2px theme.$falina-color-accent,
+      theme.$falina-shadow-glow;
+  }
+}
+
+.deck__grid-back {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  border-radius: theme.$falina-radius-sm;
+}
+
+.deck__grid-seal {
+  color: theme.$falina-gold-400;
+  font-size: 0.7rem;
+  line-height: 1;
+  opacity: 0.85;
+  filter: drop-shadow(0 0 6px rgba(theme.$falina-gold-400-rgb, 0.4));
+}
+
+.deck__pick-order {
+  position: absolute;
+  top: -0.45rem;
+  right: -0.45rem;
+  z-index: 7;
+  display: grid;
+  place-items: center;
+  width: 1.2rem;
+  height: 1.2rem;
+  border-radius: 50%;
+  background: theme.$falina-color-accent;
+  color: theme.$falina-color-text-on-accent;
+  font-size: theme.$falina-font-size-xs;
+  font-weight: 700;
+  box-shadow: theme.$falina-shadow-2;
+}
+
+// -- Reveal: the chosen cards as a fan of leaves ---------------------------------
+.deck__reveal-row {
+  --fan-angle: 8deg;
+  --fan-overlap: 2.6rem;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  padding-top: theme.$falina-space-8;
+
+  &--five {
+    --fan-angle: 7deg;
+    --fan-overlap: 1.7rem;
+  }
+
+  // The Celtic Cross is too wide for a single fan — lay it out in 5×2 grid.
+  &--ten {
+    --fan-angle: 0deg;
+    --fan-overlap: 0rem;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: theme.$falina-space-4;
+    width: min(46rem, 100%);
+    align-items: end;
+
+    .deck__card,
+    .deck__card .deck__card-inner {
+      width: 100%;
+      margin-left: 0;
+    }
+  }
+}
+
+.deck__card {
+  display: flex;
+  justify-content: center;
+  width: 7rem;
+  transform-origin: bottom center;
+  transform: rotate(calc((var(--i, 0) - (var(--n, 3) - 1) * 0.5) * var(--fan-angle)));
+
+  & + & {
+    margin-left: calc(var(--fan-overlap) * -1);
+  }
+
+  .deck__card-inner {
+    position: relative;
+    width: 7rem;
+    aspect-ratio: 3 / 5;
+    transform-style: preserve-3d;
+    animation: deck-open 900ms theme.$falina-easing-cinematic forwards;
+    animation-delay: calc(var(--i, 0) * 160ms);
+  }
+}
+
+@keyframes deck-open {
+  from {
+    transform: rotateY(0deg);
+  }
+
+  to {
+    transform: rotateY(180deg);
+  }
+}
+
+.deck__card-side {
+  position: absolute;
+  inset: 0;
+  border-radius: theme.$falina-radius-md;
+  overflow: hidden;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+
+  &--back {
+    transform: rotateY(0deg);
+  }
+
+  &--face {
+    transform: rotateY(180deg);
+    box-shadow: theme.$falina-shadow-2;
+  }
+}
+
+.deck__card-seal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: theme.$falina-gold-400;
+  font-size: theme.$falina-font-size-2xl;
+  filter: drop-shadow(0 0 10px rgba(theme.$falina-gold-400-rgb, 0.45));
+}
+
+.deck__card-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+
+  &.is-reversed {
+    transform: rotate(180deg);
+  }
+}
+
+// -- Nameplates: even-spaced grid under the fan so labels never overlap ---------
+.deck__reveal-names {
+  display: grid;
+  grid-template-columns: repeat(var(--n, 3), minmax(0, 1fr));
+  gap: theme.$falina-space-2;
+  width: min(46rem, 100%);
+  margin-top: theme.$falina-space-4;
+
+  &--ten {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+}
+
+.deck__reveal-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: theme.$falina-space-1;
+  padding: theme.$falina-space-2 theme.$falina-space-2;
+  border: 1px solid theme.$falina-color-border;
+  border-radius: theme.$falina-radius-md;
+  background: theme.$falina-color-surface-elevated;
+  text-align: center;
+  box-shadow: theme.$falina-shadow-1;
+}
+
+.deck__reveal-pos {
+  color: theme.$falina-color-accent;
+  font-size: theme.$falina-font-size-xs;
+  letter-spacing: theme.$falina-letter-spacing-caps;
+  text-transform: uppercase;
+}
+
+.deck__reveal-name {
+  font-family: theme.$falina-font-display;
+  font-size: theme.$falina-font-size-md;
+  line-height: theme.$falina-line-height-tight;
+  color: theme.$falina-color-text-primary;
+  overflow-wrap: anywhere;
+}
+
+.deck__reveal-ori {
+  color: theme.$falina-color-text-muted;
+  font-size: theme.$falina-font-size-xs;
+  letter-spacing: theme.$falina-letter-spacing-caps;
+  text-transform: uppercase;
+
+  &.is-reversed {
+    color: theme.$falina-color-error;
+  }
+}
+
+// -- Status + actions ----------------------------------------------------------------
+.deck__status {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: theme.$falina-space-4;
+  min-height: 3.5rem;
+  text-align: center;
+}
+
+.deck__status-text {
+  margin: 0;
+  color: theme.$falina-color-text-secondary;
+  line-height: theme.$falina-line-height-relaxed;
+}
+
+.deck__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: theme.$falina-space-4;
+}
+
+.deck__reshuffle {
+  border: none;
+  background: none;
+  padding: theme.$falina-space-1 theme.$falina-space-2;
+  color: theme.$falina-color-text-muted;
+  font-size: theme.$falina-font-size-sm;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+  transition: color theme.$falina-duration-fast theme.$falina-easing-standard;
+
+  &:hover {
+    color: theme.$falina-color-accent;
+  }
+
+  &:focus-visible {
+    outline: 2px solid theme.$falina-color-accent;
+    outline-offset: 2px;
+    border-radius: theme.$falina-radius-sm;
+  }
+}
+
+// -- Mobile ------------------------------------------------------------------------
+@media (max-width: 720px) {
+  .sel.tarot {
+    max-width: 100%;
+  }
+
+  // 78 cards in 13 columns × 6 rows — bigger, easier to tap.
+  .deck__grid {
+    grid-template-columns: repeat(13, minmax(0, 1fr));
+    gap: 3px;
+    width: 100%;
+    padding: theme.$falina-space-1;
+  }
+
+  .deck__grid-card.is-picked {
+    transform: translateY(-3px) scale(1.05);
+  }
+
+  // Tighter fan so it fits a phone screen.
+  .deck__reveal-row {
+    --fan-angle: 6deg;
+    --fan-overlap: 2rem;
+    padding-top: theme.$falina-space-6;
+  }
+
+  .deck__card,
+  .deck__card .deck__card-inner {
+    width: 5.6rem;
+  }
+
+  .deck__reveal-names {
+    width: 100%;
+    gap: theme.$falina-space-1;
+  }
+
+  .deck__reveal-label {
+    padding: theme.$falina-space-2 theme.$falina-space-1;
+  }
+
+  .deck__reveal-name {
+    font-size: theme.$falina-font-size-sm;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .deck__grid-card,
+  .deck__card-inner {
+    transition: none;
+    animation: none;
+  }
+}

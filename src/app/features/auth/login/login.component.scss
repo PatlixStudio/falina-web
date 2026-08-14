@@ -1,0 +1,115 @@
+@use 'theme/index' as theme;
+
+.auth-page {
+  --background: #{radial-gradient(
+      ellipse 70% 45% at 50% -5%,
+      rgba(theme.$falina-gold-400-rgb, 0.12),
+      transparent 70%
+    ),
+    theme.$falina-color-background};
+}
+
+.auth {
+  display: grid;
+  place-items: center;
+  min-height: 100%;
+  padding: theme.$falina-space-8 theme.$falina-space-6;
+
+  &__panel {
+    width: 100%;
+    max-width: 24rem;
+    padding: theme.$falina-space-8;
+    border: 1px solid theme.$falina-color-border;
+    border-radius: theme.$falina-radius-lg;
+    background: theme.$falina-color-surface;
+    box-shadow: theme.$falina-shadow-1;
+  }
+
+  &__title {
+    margin: 0;
+    font-family: theme.$falina-font-display;
+    font-size: theme.$falina-font-size-3xl;
+    color: theme.$falina-color-text-primary;
+  }
+
+  &__subtitle {
+    margin: theme.$falina-space-2 0 theme.$falina-space-6;
+    color: theme.$falina-color-text-muted;
+  }
+
+  &__error {
+    padding: theme.$falina-space-3;
+    margin: 0 0 theme.$falina-space-4;
+    border-radius: theme.$falina-radius-md;
+    border: 1px solid rgba(theme.$falina-color-error-rgb, 0.4);
+    background: rgba(theme.$falina-color-error-rgb, 0.1);
+    color: theme.$falina-color-error;
+    font-size: theme.$falina-font-size-sm;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: theme.$falina-space-6;
+  }
+
+  &__field {
+    display: flex;
+    flex-direction: column;
+    gap: theme.$falina-space-2;
+  }
+
+  &__label {
+    color: theme.$falina-color-text-secondary;
+    font-size: theme.$falina-font-size-sm;
+    letter-spacing: theme.$falina-letter-spacing-caps;
+  }
+
+  &__input {
+    padding: theme.$falina-space-3 theme.$falina-space-4;
+    border: 1px solid theme.$falina-color-border;
+    border-radius: theme.$falina-radius-md;
+    background: theme.$falina-color-panel;
+    color: theme.$falina-color-text-primary;
+    font-size: theme.$falina-font-size-md;
+    outline: none;
+
+    &:focus {
+      border-color: theme.$falina-color-accent;
+    }
+  }
+
+  &__submit {
+    margin-top: theme.$falina-space-2;
+    padding: theme.$falina-space-3;
+    border: none;
+    border-radius: theme.$falina-radius-pill;
+    background: theme.$falina-color-accent;
+    color: theme.$falina-color-text-on-accent;
+    font-size: theme.$falina-font-size-md;
+    letter-spacing: theme.$falina-letter-spacing-caps;
+    font-weight: 600;
+    cursor: pointer;
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+
+  &__switch {
+    margin: theme.$falina-space-6 0 0;
+    text-align: center;
+    color: theme.$falina-color-text-muted;
+    font-size: theme.$falina-font-size-sm;
+
+    a {
+      color: theme.$falina-color-accent;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}

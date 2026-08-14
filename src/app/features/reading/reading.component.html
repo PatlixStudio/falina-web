@@ -1,0 +1,123 @@
+<ion-content class="reading-page">
+<main class="reading">
+  @if (isView && loading()) {
+    <section class="reading__panel reading__panel--centered">
+      <p class="reading__notice">Reading from your journal…</p>
+    </section>
+  } @else if (error(); as message) {
+    <section class="reading__panel reading__panel--centered">
+      <h1 class="reading__title">The oracle is silent</h1>
+      <p class="reading__subtitle">{{ message }}</p>
+      <div class="reading__actions">
+        <a class="reading__link reading__link--primary" [routerLink]="isView ? '/history' : '/read'">
+          Back
+        </a>
+      </div>
+    </section>
+  } @else if (reading(); as result) {
+    <article class="reading__panel reading__panel--result">
+      <p class="reading__meta">{{ metaLine(result) }}</p>
+      <h1 class="reading__title">{{ result.title }}</h1>
+      <p class="reading__lede">{{ result.summary }}</p>
+
+      @if (cardChips(result).length) {
+        <ul
+          class="reading__cards"
+          [class.reading__cards--five]="cardChips(result).length === 5"
+        >
+          @for (card of cardChips(result); track card.cardId) {
+            <li class="reading__card">
+              <img
+                class="reading__card-img"
+                [class.is-reversed]="card.orientation === 'reversed'"
+                [src]="cardImage(card.cardId)"
+                [alt]="card.name"
+                loading="lazy"
+              />
+              <span class="reading__card-pos">{{ card.heading }}</span>
+              <span class="reading__card-name">{{ card.name }}</span>
+              <span class="reading__card-orientation" [class.is-reversed]="card.orientation === 'reversed'">
+                {{ card.orientation }}
+              </span>
+              <span class="reading__card-meaning">{{ cardMeaning(card) }}</span>
+            </li>
+          }
+        </ul>
+      }
+
+      @if (symbolChips(result).length) {
+        <ul class="reading__chips">
+          @for (symbol of symbolChips(result); track symbol.code) {
+            <li class="reading__chip">
+              <span class="reading__chip-code">{{ symbol.code }}</span>
+              <span class="reading__chip-keywords">{{ symbol.keywords }}</span>
+            </li>
+          }
+        </ul>
+      }
+
+      <div class="reading__oracle">
+        <p class="reading__oracle-text">{{ result.content.narrative }}</p>
+      </div>
+
+      <div class="reading__sections">
+        @for (section of result.content.sections; track section.heading) {
+          <section class="reading__section">
+            <h2 class="reading__section-heading">{{ section.heading }}</h2>
+            <p class="reading__section-body">{{ section.body }}</p>
+          </section>
+        }
+      </div>
+
+      <div class="reading__actions">
+        @if (isView) {
+          <a class="reading__link" routerLink="/history">Back to history</a>
+        } @else {
+          <button class="reading__link" type="button" (click)="startAnother()">New reading</button>
+        }
+        <a class="reading__link reading__link--primary" routerLink="/">Home</a>
+      </div>
+    </article>
+  } @else if (draft(); as selection) {
+    <section class="reading__panel">
+      <h1 class="reading__title">{{ typeLabel(selection.type) }} reading</h1>
+      <p class="reading__subtitle">Your selection is ready.</p>
+
+      <ul class="reading__summary">
+        @for (line of summaryOf(selection); track line) {
+          <li>{{ line }}</li>
+        }
+      </ul>
+
+      <label class="reading__question">
+        <span class="reading__question-label">Ask a question (optional)</span>
+        <textarea
+          class="reading__question-input"
+          rows="3"
+          maxlength="240"
+          [value]="question()"
+          (input)="onQuestion($event)"
+          placeholder="What weighs on your mind?"
+        ></textarea>
+      </label>
+
+      @if (busy()) {
+        <p class="reading__notice">The oracle is reading…</p>
+      } @else {
+        <div class="reading__actions">
+          <a class="reading__link" [routerLink]="backRouteOf(selection)">Adjust selection</a>
+          <button class="reading__link reading__link--primary" type="button" (click)="reveal()">
+            Reveal reading
+          </button>
+        </div>
+      }
+    </section>
+  } @else {
+    <section class="reading__panel reading__panel--centered">
+      <h1 class="reading__title">Nothing selected yet</h1>
+      <p class="reading__subtitle">Choose a reading to begin.</p>
+      <a class="reading__link reading__link--primary" routerLink="/read">Begin a reading</a>
+    </section>
+  }
+</main>
+</ion-content>

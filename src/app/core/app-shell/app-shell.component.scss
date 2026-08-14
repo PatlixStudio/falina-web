@@ -1,0 +1,17 @@
+@use 'theme/index' as theme;
+
+.shell {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  position: relative;
+
+  /* Ionic styles <ion-tabs> as position:absolute filling the viewport, which
+     makes its content paint OVER the top bar. Force it back into the flex
+     column so it starts below the bar. */
+  ion-tabs {
+    flex: 1;
+    min-height: 0;
+    position: relative;
+  }
+}

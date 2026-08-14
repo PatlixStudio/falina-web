@@ -1,0 +1,330 @@
+@use 'theme/index' as theme;
+
+.reading-page {
+  --background: #{radial-gradient(
+      ellipse 70% 45% at 50% -5%,
+      rgba(theme.$falina-gold-400-rgb, 0.12),
+      transparent 70%
+    ),
+    theme.$falina-color-background};
+}
+
+.reading {
+  display: grid;
+  place-items: center;
+  min-height: 100%;
+  padding: theme.$falina-space-8 theme.$falina-space-6;
+
+  &__panel {
+    width: 100%;
+    max-width: 28rem;
+    padding: theme.$falina-space-8;
+    border: 1px solid theme.$falina-color-border;
+    border-radius: theme.$falina-radius-lg;
+    background: theme.$falina-color-surface;
+    box-shadow: theme.$falina-shadow-1;
+    text-align: center;
+
+    &--centered {
+      display: grid;
+      place-items: center;
+      min-height: 18rem;
+      align-content: center;
+    }
+
+    &--result {
+      text-align: left;
+      max-width: 58rem;
+    }
+  }
+
+  &__title {
+    margin: 0;
+    font-family: theme.$falina-font-display;
+    font-size: theme.$falina-font-size-2xl;
+    line-height: theme.$falina-line-height-tight;
+    color: theme.$falina-color-text-primary;
+  }
+
+  &__subtitle {
+    margin: theme.$falina-space-2 0 0;
+    color: theme.$falina-color-text-muted;
+  }
+
+  &__meta {
+    margin: 0 0 theme.$falina-space-4;
+    color: theme.$falina-color-text-muted;
+    font-size: theme.$falina-font-size-xs;
+    letter-spacing: theme.$falina-letter-spacing-caps;
+    text-transform: uppercase;
+  }
+
+  &__lede {
+    margin: theme.$falina-space-3 0 0;
+    color: theme.$falina-color-text-secondary;
+    font-size: theme.$falina-font-size-sm;
+    line-height: theme.$falina-line-height-relaxed;
+  }
+
+  &__summary {
+    margin: theme.$falina-space-6 0;
+    padding: theme.$falina-space-4;
+    border: 1px solid theme.$falina-color-border;
+    border-radius: theme.$falina-radius-md;
+    background: theme.$falina-color-panel;
+    list-style: none;
+    text-align: left;
+
+    li {
+      padding: theme.$falina-space-2 0;
+      color: theme.$falina-color-text-secondary;
+      font-size: theme.$falina-font-size-sm;
+
+      &:not(:last-child) {
+        border-bottom: 1px solid theme.$falina-color-border;
+      }
+    }
+  }
+
+  &__question {
+    display: block;
+    margin: theme.$falina-space-6 0;
+    text-align: left;
+  }
+
+  &__question-label {
+    display: block;
+    margin-bottom: theme.$falina-space-2;
+    color: theme.$falina-color-text-secondary;
+    font-size: theme.$falina-font-size-sm;
+    letter-spacing: theme.$falina-letter-spacing-caps;
+  }
+
+  &__question-input {
+    width: 100%;
+    padding: theme.$falina-space-3 theme.$falina-space-4;
+    border: 1px solid theme.$falina-color-border;
+    border-radius: theme.$falina-radius-md;
+    background: theme.$falina-color-panel;
+    color: theme.$falina-color-text-primary;
+    font-family: inherit;
+    font-size: theme.$falina-font-size-md;
+    line-height: theme.$falina-line-height-relaxed;
+    resize: vertical;
+
+    &::placeholder {
+      color: theme.$falina-color-text-muted;
+    }
+
+    &:focus {
+      outline: none;
+      border-color: theme.$falina-color-accent;
+      box-shadow: 0 0 0 2px theme.$falina-color-accent-soft;
+    }
+  }
+
+  &__cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: theme.$falina-space-4;
+    margin: theme.$falina-space-6 0;
+    padding: 0;
+    list-style: none;
+
+    &--five {
+      grid-template-columns: repeat(5, 1fr);
+    }
+  }
+
+  &__card {
+    display: flex;
+    flex-direction: column;
+    gap: theme.$falina-space-2;
+    padding: theme.$falina-space-3;
+    border: 1px solid theme.$falina-color-border;
+    border-radius: theme.$falina-radius-md;
+    background: theme.$falina-color-surface;
+
+    &-img {
+      width: 100%;
+      aspect-ratio: 3 / 5;
+      object-fit: cover;
+      border-radius: theme.$falina-radius-sm;
+      border: 1px solid theme.$falina-color-border;
+
+      &.is-reversed {
+        transform: rotate(180deg);
+      }
+    }
+
+    &-pos {
+      color: theme.$falina-color-accent;
+      font-size: theme.$falina-font-size-xs;
+      letter-spacing: theme.$falina-letter-spacing-caps;
+      text-transform: uppercase;
+    }
+
+    &-name {
+      color: theme.$falina-color-text-primary;
+      font-family: theme.$falina-font-display;
+      font-size: theme.$falina-font-size-md;
+      font-weight: theme.$falina-font-weight-semibold;
+    }
+
+    &-orientation {
+      align-self: flex-start;
+      padding: 2px theme.$falina-space-2;
+      border-radius: theme.$falina-radius-pill;
+      background: theme.$falina-color-accent-soft;
+      color: theme.$falina-color-accent-strong;
+      font-size: theme.$falina-font-size-xs;
+      letter-spacing: theme.$falina-letter-spacing-caps;
+      text-transform: uppercase;
+
+      &:not(.is-reversed) {
+        background: theme.$falina-color-panel;
+        color: theme.$falina-gold-400;
+      }
+    }
+
+    &-meaning {
+      color: theme.$falina-color-text-secondary;
+      font-size: theme.$falina-font-size-sm;
+      line-height: theme.$falina-line-height-relaxed;
+    }
+  }
+
+  &__chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: theme.$falina-space-2;
+    margin: theme.$falina-space-6 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__chip {
+    display: flex;
+    flex-direction: column;
+    gap: theme.$falina-space-1;
+    padding: theme.$falina-space-3 theme.$falina-space-4;
+    border: 1px solid theme.$falina-color-border;
+    border-radius: theme.$falina-radius-pill;
+    background: theme.$falina-color-surface-elevated;
+
+    &-code {
+      color: theme.$falina-color-text-primary;
+      font-family: theme.$falina-font-display;
+      font-size: theme.$falina-font-size-sm;
+      font-weight: theme.$falina-font-weight-semibold;
+    }
+
+    &-keywords {
+      color: theme.$falina-color-text-muted;
+      font-size: theme.$falina-font-size-xs;
+    }
+  }
+
+  &__oracle {
+    margin: theme.$falina-space-6 0;
+    padding: theme.$falina-space-6;
+    border: 1px solid theme.$falina-color-accent;
+    border-radius: theme.$falina-radius-lg;
+    background: theme.$falina-color-surface-tinted;
+    box-shadow: theme.$falina-shadow-glow;
+
+    &-text {
+      margin: 0;
+      font-family: theme.$falina-font-display;
+      font-size: theme.$falina-font-size-lg;
+      line-height: theme.$falina-line-height-relaxed;
+      color: theme.$falina-color-text-primary;
+    }
+  }
+
+  &__sections {
+    display: grid;
+    gap: theme.$falina-space-4;
+    margin: theme.$falina-space-6 0;
+  }
+
+  &__section {
+    padding: theme.$falina-space-4;
+    border: 1px solid theme.$falina-color-border;
+    border-radius: theme.$falina-radius-md;
+    background: theme.$falina-color-panel;
+
+    &-heading {
+      margin: 0 0 theme.$falina-space-2;
+      font-size: theme.$falina-font-size-md;
+      color: theme.$falina-color-accent;
+    }
+
+    &-body {
+      margin: 0;
+      color: theme.$falina-color-text-secondary;
+      font-size: theme.$falina-font-size-sm;
+      line-height: theme.$falina-line-height-relaxed;
+    }
+  }
+
+  &__notice {
+    margin: theme.$falina-space-6 0 0;
+    color: theme.$falina-color-text-muted;
+    font-size: theme.$falina-font-size-sm;
+    line-height: theme.$falina-line-height-relaxed;
+  }
+
+  &__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: theme.$falina-space-3;
+    justify-content: center;
+    margin-top: theme.$falina-space-6;
+  }
+
+  &__link {
+    padding: theme.$falina-space-3 theme.$falina-space-4;
+    border: 1px solid theme.$falina-color-border;
+    border-radius: theme.$falina-radius-pill;
+    background: transparent;
+    color: theme.$falina-color-text-secondary;
+    font-family: inherit;
+    font-size: theme.$falina-font-size-sm;
+    letter-spacing: theme.$falina-letter-spacing-caps;
+    text-decoration: none;
+    cursor: pointer;
+
+    &--primary {
+      border-color: theme.$falina-color-accent;
+      background: theme.$falina-color-accent;
+      color: theme.$falina-color-text-on-accent;
+      font-weight: theme.$falina-font-weight-semibold;
+    }
+  }
+
+  @media (max-width: 720px) {
+    padding: theme.$falina-space-6 theme.$falina-space-4;
+
+    &__panel {
+      padding: theme.$falina-space-6 theme.$falina-space-4;
+    }
+
+    &__cards {
+      grid-template-columns: repeat(2, 1fr);
+      gap: theme.$falina-space-3;
+
+      &--five {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    &__oracle {
+      padding: theme.$falina-space-4;
+    }
+
+    &__oracle-text {
+      font-size: theme.$falina-font-size-md;
+    }
+  }
+}

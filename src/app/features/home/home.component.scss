@@ -1,24 +1,26 @@
 @use 'theme/index' as theme;
 
-.splash {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: theme.$falina-space-12;
-  min-height: 100vh;
-  padding: theme.$falina-space-8 theme.$falina-space-6;
-  background:
-    radial-gradient(
+.home {
+  --background: #{radial-gradient(
       ellipse 80% 55% at 50% -5%,
-      rgba(theme.$falina-gold-400, 0.14),
+      rgba(theme.$falina-gold-400-rgb, 0.14),
       transparent 70%
     ),
-    theme.$falina-color-background;
+    theme.$falina-color-background};
+
+  &__inner {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: theme.$falina-space-12;
+    padding: theme.$falina-space-12 theme.$falina-space-6;
+    text-align: center;
+  }
 }
 
 .brand {
-  text-align: center;
-
   &__orb {
     display: inline-block;
     width: 4.5rem;
@@ -52,30 +54,37 @@
   }
 }
 
-.pillars {
-  display: grid;
-  gap: theme.$falina-space-4;
-
-  .pillar {
+.home {
+  &__cta {
     display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    padding: theme.$falina-space-4;
-    border: 1px solid theme.$falina-color-border;
-    border-radius: theme.$falina-radius-lg;
-    background: theme.$falina-color-surface;
-    box-shadow: theme.$falina-shadow-1;
+    flex-direction: column;
+    align-items: center;
+    gap: theme.$falina-space-4;
+  }
 
-    &__name {
-      font-family: theme.$falina-font-display;
-      font-size: theme.$falina-font-size-xl;
-      color: theme.$falina-color-text-primary;
-    }
+  &__cta-button {
+    display: inline-block;
+    padding: theme.$falina-space-4 theme.$falina-space-12;
+    border-radius: theme.$falina-radius-pill;
+    background: theme.$falina-color-accent;
+    color: theme.$falina-color-text-on-accent;
+    font-size: theme.$falina-font-size-md;
+    font-weight: theme.$falina-font-weight-semibold;
+    letter-spacing: theme.$falina-letter-spacing-caps;
+    box-shadow: theme.$falina-shadow-glow;
+    transition:
+      background 200ms ease,
+      transform 200ms ease;
 
-    &__line {
-      color: theme.$falina-color-text-muted;
-      font-size: theme.$falina-font-size-sm;
-      letter-spacing: theme.$falina-letter-spacing-display;
+    &:hover {
+      background: theme.$falina-color-accent-strong;
+      transform: translateY(-2px);
     }
+  }
+
+  &__hint {
+    margin: 0;
+    color: theme.$falina-color-text-muted;
+    font-size: theme.$falina-font-size-sm;
   }
 }

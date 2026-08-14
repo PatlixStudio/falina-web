@@ -1,0 +1,134 @@
+@use '../selection-common' as common;
+@use 'theme/index' as theme;
+
+.coffee__dropzone {
+  width: 100%;
+}
+
+.coffee__upload {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: theme.$falina-space-2;
+  padding: theme.$falina-space-8 theme.$falina-space-4;
+  border: 1px dashed theme.$falina-color-border-strong;
+  border-radius: theme.$falina-radius-lg;
+  background: theme.$falina-color-surface;
+  cursor: pointer;
+  text-align: center;
+  transition:
+    border-color 200ms ease,
+    background 200ms ease;
+
+  &:hover {
+    border-color: theme.$falina-color-accent;
+    background: theme.$falina-color-accent-soft;
+  }
+
+  input {
+    display: none;
+  }
+}
+
+.coffee__upload-icon {
+  font-size: 2.5rem;
+  line-height: 1;
+  filter: drop-shadow(0 0 12px rgba(theme.$falina-gold-400-rgb, 0.45));
+}
+
+.coffee__upload-title {
+  font-family: theme.$falina-font-display;
+  font-size: theme.$falina-font-size-lg;
+  color: theme.$falina-color-text-primary;
+}
+
+.coffee__upload-hint {
+  color: theme.$falina-color-text-muted;
+  font-size: theme.$falina-font-size-xs;
+}
+
+.coffee__preview {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: theme.$falina-space-3;
+}
+
+.coffee__preview-img {
+  width: min(18rem, 100%);
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: theme.$falina-radius-lg;
+  border: 1px solid theme.$falina-color-border-strong;
+  box-shadow: theme.$falina-shadow-glow;
+}
+
+.coffee__preview-clear {
+  border: none;
+  background: none;
+  padding: theme.$falina-space-1 theme.$falina-space-2;
+  color: theme.$falina-color-text-muted;
+  font-size: theme.$falina-font-size-sm;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+
+  &:hover {
+    color: theme.$falina-color-accent;
+  }
+}
+
+.coffee__analyzing {
+  margin: theme.$falina-space-3 0 0;
+  color: theme.$falina-color-accent;
+  font-size: theme.$falina-font-size-sm;
+  text-align: center;
+}
+
+.coffee__error {
+  margin: theme.$falina-space-3 0 0;
+  color: theme.$falina-color-error;
+  font-size: theme.$falina-font-size-sm;
+  text-align: center;
+}
+
+.coffee__observations {
+  margin-top: theme.$falina-space-4;
+}
+
+.coffee__obs-title {
+  margin: 0 0 theme.$falina-space-2;
+  color: theme.$falina-color-text-secondary;
+  font-size: theme.$falina-font-size-sm;
+  letter-spacing: theme.$falina-letter-spacing-caps;
+  text-transform: uppercase;
+}
+
+.coffee__obs-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: theme.$falina-space-2;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.coffee__obs {
+  display: flex;
+  align-items: center;
+  gap: theme.$falina-space-2;
+  padding: theme.$falina-space-2 theme.$falina-space-3;
+  border: 1px solid theme.$falina-color-border;
+  border-radius: theme.$falina-radius-pill;
+  background: theme.$falina-color-surface-elevated;
+}
+
+.coffee__obs-name {
+  font-family: theme.$falina-font-display;
+  color: theme.$falina-color-accent-strong;
+}
+
+.coffee__obs-loc {
+  color: theme.$falina-color-text-muted;
+  font-size: theme.$falina-font-size-xs;
+}

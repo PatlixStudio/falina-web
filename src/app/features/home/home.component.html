@@ -1,17 +1,17 @@
-<main class="splash">
-  <section class="brand">
-    <span class="brand__orb" aria-hidden="true"></span>
-    <h1 class="brand__wordmark">{{ appName }}</h1>
-    <p class="brand__tagline">{{ tagline }}</p>
-    <p class="brand__quote">Read the signs. Ask the cards. Discover your sky.</p>
-  </section>
+<ion-content class="home">
+  <div class="home__inner">
+    <section class="brand">
+      <span class="brand__orb" aria-hidden="true"></span>
+      <h1 class="brand__wordmark">{{ appName }}</h1>
+      <p class="brand__tagline">{{ tagline }}</p>
+      <p class="brand__quote">Read the signs. Ask the cards. Discover your sky.</p>
+    </section>
 
-  <section class="pillars" aria-label="Readings">
-    @for (pillar of pillars; track pillar.name) {
-      <div class="pillar">
-        <span class="pillar__name">{{ pillar.name }}</span>
-        <span class="pillar__line">{{ pillar.line }}</span>
-      </div>
-    }
-  </section>
-</main>
+    <section class="home__cta">
+      <a class="home__cta-button" routerLink="/read">Choose a reading</a>
+      @if (!isAuthenticated()) {
+        <p class="home__hint">Sign in to save your readings to your journal.</p>
+      }
+    </section>
+  </div>
+</ion-content>

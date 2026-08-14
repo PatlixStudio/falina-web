@@ -1,0 +1,84 @@
+@use 'theme/index' as theme;
+
+.topbar {
+  position: relative;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: theme.$falina-space-4;
+  padding: theme.$falina-space-4 theme.$falina-space-6;
+  border-bottom: 1px solid theme.$falina-color-border;
+  background: theme.$falina-color-surface;
+
+  &__brand {
+    display: inline-flex;
+    align-items: center;
+    gap: theme.$falina-space-3;
+    text-decoration: none;
+  }
+
+  &__orb {
+    width: 1.4rem;
+    height: 1.4rem;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, theme.$falina-gold-300, theme.$falina-gold-600);
+    box-shadow: theme.$falina-shadow-glow;
+  }
+
+  &__wordmark {
+    font-family: theme.$falina-font-display;
+    font-size: theme.$falina-font-size-lg;
+    letter-spacing: theme.$falina-letter-spacing-caps;
+    color: theme.$falina-color-text-primary;
+  }
+
+  &__actions {
+    display: inline-flex;
+    align-items: center;
+    gap: theme.$falina-space-4;
+  }
+
+  &__theme {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    border: 1px solid theme.$falina-color-border-strong;
+    border-radius: theme.$falina-radius-pill;
+    background: transparent;
+    color: theme.$falina-color-accent;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition:
+      background 200ms ease,
+      color 200ms ease;
+
+    &:hover {
+      background: theme.$falina-color-accent-soft;
+    }
+  }
+
+  &__email {
+    color: theme.$falina-color-text-muted;
+    font-size: theme.$falina-font-size-sm;
+  }
+
+  &__link {
+    padding: theme.$falina-space-2 theme.$falina-space-4;
+    border: 1px solid theme.$falina-color-border-strong;
+    border-radius: theme.$falina-radius-pill;
+    color: theme.$falina-color-accent;
+    font-size: theme.$falina-font-size-sm;
+    letter-spacing: theme.$falina-letter-spacing-caps;
+    text-decoration: none;
+    background: transparent;
+    cursor: pointer;
+    transition: background 200ms ease;
+
+    &:hover {
+      background: theme.$falina-color-accent-soft;
+    }
+  }
+}

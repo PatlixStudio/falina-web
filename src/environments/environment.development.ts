@@ -1,4 +1,4 @@
-import { FalinaEnvironment } from './environment';
+import { FalinaEnvironment } from './environment.model';
 
 export const environment: FalinaEnvironment = {
   production: false,

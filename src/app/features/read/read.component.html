@@ -1,0 +1,17 @@
+<ion-content class="read">
+  <div class="read__inner">
+    <header class="read__header">
+      <h1 class="read__title">What shall we read?</h1>
+      <p class="read__subtitle">Choose a path — each one is drawn for you alone.</p>
+    </header>
+
+    <section class="read__grid" aria-label="Reading types">
+      @for (option of options; track option.name) {
+        <a class="read__card" [routerLink]="option.route">
+          <span class="read__card-name">{{ option.name }}</span>
+          <span class="read__card-line">{{ option.line }}</span>
+        </a>
+      }
+    </section>
+  </div>
+</ion-content>

@@ -1,0 +1,35 @@
+@use 'theme/index' as theme;
+@use '../selection-common' as common;
+
+.astro {
+  &__form {
+    display: grid;
+    gap: theme.$falina-space-4;
+  }
+
+  &__field {
+    display: flex;
+    flex-direction: column;
+    gap: theme.$falina-space-2;
+  }
+
+  &__label {
+    color: theme.$falina-color-text-secondary;
+    font-size: theme.$falina-font-size-sm;
+    letter-spacing: theme.$falina-letter-spacing-caps;
+  }
+
+  &__input {
+    padding: theme.$falina-space-3 theme.$falina-space-4;
+    border: 1px solid theme.$falina-color-border;
+    border-radius: theme.$falina-radius-md;
+    background: theme.$falina-color-panel;
+    color: theme.$falina-color-text-primary;
+    font-size: theme.$falina-font-size-md;
+    outline: none;
+
+    &:focus {
+      border-color: theme.$falina-color-accent;
+    }
+  }
+}

@@ -1,0 +1,27 @@
+<div class="shell">
+  <falina-top-bar />
+
+  <ion-tabs>
+    <ion-tab-bar slot="bottom">
+      <ion-tab-button tab="home" routerLink="/" routerLinkActive="tab-selected" [routerLinkActiveOptions]="{ exact: true }">
+        <ion-icon name="home-outline" aria-hidden="true"></ion-icon>
+        <ion-label>Home</ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button tab="read" routerLink="/read" routerLinkActive="tab-selected">
+        <ion-icon name="book-outline" aria-hidden="true"></ion-icon>
+        <ion-label>Read</ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button tab="history" routerLink="/history" routerLinkActive="tab-selected">
+        <ion-icon name="time-outline" aria-hidden="true"></ion-icon>
+        <ion-label>History</ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button tab="profile" routerLink="/profile" routerLinkActive="tab-selected">
+        <ion-icon name="person-outline" aria-hidden="true"></ion-icon>
+        <ion-label>Profile</ion-label>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
+</div>

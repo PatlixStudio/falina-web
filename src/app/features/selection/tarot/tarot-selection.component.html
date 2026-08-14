@@ -1,0 +1,182 @@
+<ion-content class="sel-page">
+  <main class="sel tarot">
+    <header class="sel__header">
+      <a class="sel__back" routerLink="/">← Home</a>
+      <h1 class="sel__title">Tarot</h1>
+      <p class="sel__subtitle">
+        Choose how many cards to read, then pick them face-down from the deck.
+        Your first pick falls in the first position, and each following pick
+        fills the next.
+      </p>
+    </header>
+
+    <section class="tarot__spread">
+      <h2 class="sel__group-title">Reading size</h2>
+      <div class="tarot__spread-options">
+        @for (spread of spreadOptions; track spread.code) {
+          <button
+            type="button"
+            class="tarot__spread-option"
+            [class.is-selected]="spreadCode() === spread.code"
+            [class.is-locked]="spread.premium && !isPremium()"
+            (click)="selectSpread(spread.code)"
+          >
+            <span class="tarot__spread-count" aria-hidden="true">{{ spread.cardCount }}</span>
+            <span class="tarot__spread-meta">
+              <span class="tarot__spread-title">
+                {{ spread.label }}
+                @if (spread.premium) {
+                  <span class="tarot__spread-premium" aria-hidden="true">✦ Premium</span>
+                }
+              </span>
+              <span class="tarot__spread-positions">
+                @for (pos of spread.positions; track pos) {
+                  <span class="tarot__spread-pos">{{ humanize(pos) }}</span>
+                }
+              </span>
+            </span>
+          </button>
+        }
+      </div>
+    </section>
+
+    <section class="tarot__intent">
+      <h2 class="sel__group-title">Your intention</h2>
+      <div class="sel__chips tarot__intent-chips">
+        @for (intentOption of intents; track intentOption) {
+          <button
+            type="button"
+            class="sel__chip"
+            [class.is-selected]="intent() === intentOption"
+            (click)="intent.set(intentOption)"
+          >
+            {{ humanize(intentOption) }}
+          </button>
+        }
+      </div>
+    </section>
+
+    @if (showUpgrade()) {
+      <div class="tarot__upgrade" role="alert">
+        <p class="tarot__upgrade-text">
+          The Celtic Cross is a Premium spread — ten cards telling the full story.
+          Upgrade to unlock it, and every other advanced reading.
+        </p>
+        <div class="tarot__upgrade-actions">
+          <a class="tarot__upgrade-btn" routerLink="/profile">Go Premium</a>
+          <button type="button" class="tarot__upgrade-close" (click)="closeUpgrade()">
+            Not now
+          </button>
+        </div>
+      </div>
+    }
+
+    <section class="tarot__stage">
+      @if (phase() === 'pick') {
+        <div class="deck__status">
+          <p class="deck__status-text">
+            @if (selectedCount() < pickLimit()) {
+              {{ selectedCount() }} of {{ pickLimit() }} chosen — touch a card back
+              to hold it, touch it again to let it go.
+            } @else {
+              All {{ pickLimit() }} cards are held. When you are ready, turn them.
+            }
+          </p>
+        </div>
+
+        <div
+          class="deck__grid"
+          [class.is-full]="selectedCount() === pickLimit()"
+        >
+          @for (card of grid(); track card.cardId; let i = $index) {
+            <button
+              type="button"
+              class="deck__grid-card"
+              [class.is-picked]="card.picked > 0"
+              (click)="togglePick(i)"
+              [attr.aria-label]="
+                card.picked > 0
+                  ? positionLabelForPick(card.picked) + ' card chosen — tap to release'
+                  : 'Face-down card — tap to choose'
+              "
+            >
+              <span class="deck-back deck__grid-back">
+                <span class="deck__grid-seal" aria-hidden="true">✦</span>
+              </span>
+              @if (card.picked > 0) {
+                <span class="deck__pick-order" aria-hidden="true">{{ card.picked }}</span>
+              }
+            </button>
+          }
+        </div>
+
+        <div class="deck__actions">
+          @if (selectedCount() === pickLimit()) {
+            <button type="button" class="sel__begin" (click)="reveal()">
+              Turn the cards
+            </button>
+          }
+          <button type="button" class="deck__reshuffle" (click)="reshuffle()">
+            Shuffle the deck
+          </button>
+        </div>
+      } @else {
+        <div
+          class="deck__reveal-row"
+          [class.deck__reveal-row--five]="pickedCards().length === 5"
+          [class.deck__reveal-row--ten]="pickedCards().length === 10"
+          [style.--n]="pickedCards().length"
+        >
+          @for (card of pickedCards(); track card.cardId; let i = $index) {
+            <div class="deck__card" [style.--i]="i">
+              <div class="deck__card-inner">
+                <span class="deck__card-side deck__card-side--back deck-back">
+                  <span class="deck__card-seal" aria-hidden="true">✦</span>
+                </span>
+                <span class="deck__card-side deck__card-side--face">
+                  <img
+                    class="deck__card-img"
+                    [class.is-reversed]="card.orientation === 'REVERSED'"
+                    [src]="cardImage(card.cardId)"
+                    [alt]="cardName(card.cardId)"
+                  />
+                </span>
+              </div>
+            </div>
+          }
+        </div>
+
+        <div
+          class="deck__reveal-names"
+          [class.deck__reveal-names--five]="pickedCards().length === 5"
+          [class.deck__reveal-names--ten]="pickedCards().length === 10"
+          [style.--n]="pickedCards().length"
+        >
+          @for (card of pickedCards(); track card.cardId; let i = $index) {
+            <div class="deck__reveal-label">
+              <span class="deck__reveal-pos">{{ positionLabelForPick(i + 1) }}</span>
+              <span class="deck__reveal-name">{{ cardName(card.cardId) }}</span>
+              <span class="deck__reveal-ori" [class.is-reversed]="card.orientation === 'REVERSED'">
+                {{ card.orientation.toLowerCase() }}
+              </span>
+            </div>
+          }
+        </div>
+
+        <div class="deck__status">
+          <p class="deck__status-text">
+            The cards have chosen you in return. When you are ready, let the
+            oracle speak.
+          </p>
+        </div>
+
+        <div class="deck__actions">
+          <button type="button" class="sel__begin" (click)="begin()">Begin reading</button>
+          <button type="button" class="deck__reshuffle" (click)="reshuffle()">
+            Shuffle again
+          </button>
+        </div>
+      }
+    </section>
+  </main>
+</ion-content>

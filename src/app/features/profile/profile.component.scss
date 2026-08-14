@@ -1,0 +1,94 @@
+@use 'theme/index' as theme;
+
+.profile {
+  --background: #{theme.$falina-color-background};
+
+  &__inner {
+    max-width: 28rem;
+    margin: 0 auto;
+    padding: theme.$falina-space-8 theme.$falina-space-6;
+  }
+
+  &__header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: theme.$falina-space-2;
+    margin-bottom: theme.$falina-space-8;
+    text-align: center;
+  }
+
+  &__avatar {
+    display: grid;
+    place-items: center;
+    width: 4.5rem;
+    height: 4.5rem;
+    margin-bottom: theme.$falina-space-2;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, theme.$falina-gold-300, theme.$falina-gold-600);
+    box-shadow: theme.$falina-shadow-glow;
+    color: theme.$falina-color-text-on-accent;
+    font-family: theme.$falina-font-display;
+    font-size: theme.$falina-font-size-2xl;
+    font-weight: theme.$falina-font-weight-semibold;
+  }
+
+  &__title {
+    font-size: theme.$falina-font-size-2xl;
+    color: theme.$falina-color-text-primary;
+  }
+
+  &__subtitle {
+    margin: 0;
+    color: theme.$falina-color-text-muted;
+  }
+
+  &__card {
+    padding: theme.$falina-space-2 theme.$falina-space-6;
+    border: 1px solid theme.$falina-color-border;
+    border-radius: theme.$falina-radius-lg;
+    background: theme.$falina-color-surface;
+  }
+
+  &__row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin: 0;
+    padding: theme.$falina-space-4 0;
+
+    &:not(:last-child) {
+      border-bottom: 1px solid theme.$falina-color-border;
+    }
+
+    dt {
+      color: theme.$falina-color-text-muted;
+      font-size: theme.$falina-font-size-sm;
+      letter-spacing: theme.$falina-letter-spacing-caps;
+    }
+
+    dd {
+      margin: 0;
+      color: theme.$falina-color-text-primary;
+      font-family: theme.$falina-font-display;
+      font-size: theme.$falina-font-size-md;
+    }
+  }
+
+  &__logout {
+    width: 100%;
+    margin-top: theme.$falina-space-6;
+    padding: theme.$falina-space-3;
+    border: 1px solid rgba(theme.$falina-color-error-rgb, 0.5);
+    border-radius: theme.$falina-radius-pill;
+    background: transparent;
+    color: theme.$falina-color-error;
+    font-size: theme.$falina-font-size-md;
+    letter-spacing: theme.$falina-letter-spacing-caps;
+    cursor: pointer;
+
+    &:hover {
+      background: rgba(theme.$falina-color-error-rgb, 0.1);
+    }
+  }
+}

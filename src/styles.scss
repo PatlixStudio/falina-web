@@ -1,9 +1,156 @@
-// Falina global styles.
+// Falina global styles. Theme 1 (`:root`, default) is "Cosmic" — deep space
+// indigo, nebula violet, aurora teal. Theme 2 (`html[data-theme="warm"]`) is
+// "Ember" — the warm candlelit charcoal + gold palette. Both are dark themes;
+// the toggle lives in the top bar.
+
+// Cosmic palette — deep space indigo, nebula violet, aurora teal, starlight.
 
 @use 'theme/index' as theme;
 
 :root {
   color-scheme: dark;
+
+  // -- Raw palette (dark: deep space + nebula) -------------------------------
+  --falina-charcoal-950: #0a0f1e;
+  --falina-charcoal-900: #0d1530;
+  --falina-charcoal-800: #131b3b;
+  --falina-charcoal-700: #1b2547;
+  --falina-charcoal-600: #263053;
+
+  --falina-ivory-100: #eef1ff;
+  --falina-ivory-200: #dfe4ff;
+  --falina-ivory-300: #c3cbff;
+
+  --falina-gold-300: #c4b5fd;
+  --falina-gold-400: #a78bfa;
+  --falina-gold-500: #8b6ff0;
+  --falina-gold-600: #6d4fd8;
+
+  --falina-coffee-600: #5eead4;
+  --falina-coffee-700: #2dd4bf;
+  --falina-coffee-800: #123f47;
+
+  --falina-status-success: #34d399;
+  --falina-status-warning: #fbbf24;
+  --falina-status-error: #fb7185;
+
+  --falina-charcoal-950-rgb: 10, 15, 30;
+  --falina-charcoal-900-rgb: 13, 21, 48;
+  --falina-ivory-100-rgb: 238, 241, 255;
+  --falina-gold-300-rgb: 196, 181, 253;
+  --falina-gold-400-rgb: 167, 139, 250;
+  --falina-gold-600-rgb: 109, 79, 216;
+  --falina-coffee-600-rgb: 94, 234, 212;
+
+  // -- Semantic tokens (dark) ----------------------------------------------
+  --falina-color-background: #0d1530;
+  --falina-color-surface: #131b3b;
+  --falina-color-surface-elevated: #1b2547;
+  --falina-color-surface-tinted: #201549;
+  --falina-color-panel: #0a0f1e;
+
+  --falina-color-text-primary: #eef1ff;
+  --falina-color-text-secondary: rgba(238, 241, 255, 0.72);
+  --falina-color-text-muted: rgba(238, 241, 255, 0.5);
+  --falina-color-text-on-accent: #0d1530;
+
+  --falina-color-accent: #a78bfa;
+  --falina-color-accent-soft: rgba(167, 139, 250, 0.16);
+  --falina-color-accent-strong: #c4b5fd;
+
+  --falina-color-border: rgba(238, 241, 255, 0.12);
+  --falina-color-border-strong: rgba(167, 139, 250, 0.4);
+
+  --falina-color-success: #34d399;
+  --falina-color-warning: #fbbf24;
+  --falina-color-error: #fb7185;
+  --falina-color-error-rgb: 251, 113, 133;
+
+  // -- Ionic mapping (resolves per active theme) ----------------------------
+  --ion-background-color: #{theme.$falina-color-background};
+  --ion-background-color-rgb: #{theme.$falina-charcoal-900-rgb};
+  --ion-text-color: #{theme.$falina-color-text-primary};
+  --ion-text-color-rgb: #{theme.$falina-ivory-100-rgb};
+  --ion-border-color: #{theme.$falina-color-border};
+
+  --ion-color-primary: #{theme.$falina-gold-400};
+  --ion-color-primary-rgb: #{theme.$falina-gold-400-rgb};
+  --ion-color-primary-contrast: #{theme.$falina-charcoal-950};
+  --ion-color-primary-shade: #{theme.$falina-gold-500};
+  --ion-color-primary-tint: #{theme.$falina-gold-300};
+
+  --ion-color-secondary: #{theme.$falina-coffee-600};
+  --ion-color-success: #{theme.$falina-color-success};
+  --ion-color-warning: #{theme.$falina-color-warning};
+  --ion-color-danger: #{theme.$falina-color-error};
+
+  --ion-tab-bar-background: #{theme.$falina-color-surface};
+  --ion-tab-bar-color: #{theme.$falina-color-text-muted};
+  --ion-tab-bar-color-selected: #{theme.$falina-color-accent};
+  --ion-tab-bar-border-color: #{theme.$falina-color-border};
+
+  --ion-toolbar-background: #{theme.$falina-color-surface};
+  --ion-toolbar-color: #{theme.$falina-color-text-primary};
+}
+
+[data-theme='warm'] {
+  color-scheme: dark;
+
+  // -- Raw palette (warm: candlelit charcoal + gold) -------------------------
+  --falina-charcoal-950: #12100e;
+  --falina-charcoal-900: #1a1714;
+  --falina-charcoal-800: #242019;
+  --falina-charcoal-700: #2e2922;
+  --falina-charcoal-600: #3a342b;
+
+  --falina-ivory-100: #f4ebdd;
+  --falina-ivory-200: #eae0cf;
+  --falina-ivory-300: #d9cfbc;
+
+  --falina-gold-300: #dbc08c;
+  --falina-gold-400: #c9a96a;
+  --falina-gold-500: #b08f52;
+  --falina-gold-600: #8f6f3c;
+
+  --falina-coffee-600: #6b4a35;
+  --falina-coffee-700: #553a2a;
+  --falina-coffee-800: #402a1e;
+
+  --falina-status-success: #7fb57f;
+  --falina-status-warning: #d9a45b;
+  --falina-status-error: #d96b5b;
+
+  --falina-charcoal-950-rgb: 18, 16, 14;
+  --falina-charcoal-900-rgb: 26, 23, 20;
+  --falina-ivory-100-rgb: 244, 235, 221;
+  --falina-gold-300-rgb: 219, 192, 140;
+  --falina-gold-400-rgb: 201, 169, 106;
+  --falina-gold-600-rgb: 143, 111, 60;
+  --falina-coffee-600-rgb: 107, 74, 53;
+
+  // -- Semantic tokens (warm) ------------------------------------------------
+  --falina-color-background: #1a1714;
+  --falina-color-surface: #242019;
+  --falina-color-surface-elevated: #2e2922;
+  --falina-color-surface-tinted: #402a1e;
+  --falina-color-panel: #12100e;
+
+  --falina-color-text-primary: #f4ebdd;
+  --falina-color-text-secondary: rgba(244, 235, 221, 0.72);
+  --falina-color-text-muted: rgba(244, 235, 221, 0.5);
+  --falina-color-text-on-accent: #12100e;
+
+  --falina-color-accent: #c9a96a;
+  --falina-color-accent-soft: rgba(201, 169, 106, 0.16);
+  --falina-color-accent-strong: #dbc08c;
+
+  --falina-color-border: rgba(244, 235, 221, 0.12);
+  --falina-color-border-strong: rgba(201, 169, 106, 0.35);
+
+  --falina-color-success: #7fb57f;
+  --falina-color-warning: #d9a45b;
+  --falina-color-error: #d96b5b;
+  --falina-color-error-rgb: 217, 107, 91;
 }
 
 html,

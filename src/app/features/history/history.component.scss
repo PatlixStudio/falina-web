@@ -1,0 +1,119 @@
+@use 'theme/index' as theme;
+
+.history {
+  --background: #{theme.$falina-color-background};
+
+  &__inner {
+    max-width: 42rem;
+    margin: 0 auto;
+    padding: theme.$falina-space-8 theme.$falina-space-6;
+  }
+
+  &__header {
+    margin-bottom: theme.$falina-space-8;
+  }
+
+  &__title {
+    font-size: theme.$falina-font-size-3xl;
+    color: theme.$falina-color-text-primary;
+  }
+
+  &__subtitle {
+    margin: theme.$falina-space-2 0 0;
+    color: theme.$falina-color-text-muted;
+  }
+
+  &__empty {
+    padding: theme.$falina-space-12 theme.$falina-space-8;
+    border: 1px dashed theme.$falina-color-border;
+    border-radius: theme.$falina-radius-lg;
+    background: theme.$falina-color-surface;
+    text-align: center;
+  }
+
+  &__empty-orb {
+    display: inline-block;
+    width: 3rem;
+    height: 3rem;
+    margin-bottom: theme.$falina-space-4;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, theme.$falina-gold-300, theme.$falina-gold-600);
+    box-shadow: theme.$falina-shadow-glow;
+  }
+
+  &__empty-title {
+    margin: 0;
+    font-family: theme.$falina-font-display;
+    font-size: theme.$falina-font-size-xl;
+    color: theme.$falina-color-text-primary;
+  }
+
+  &__empty-body {
+    margin: theme.$falina-space-3 auto theme.$falina-space-6;
+    max-width: 20rem;
+    color: theme.$falina-color-text-muted;
+    font-size: theme.$falina-font-size-sm;
+    line-height: theme.$falina-line-height-relaxed;
+  }
+
+  &__empty-link {
+    display: inline-block;
+    padding: theme.$falina-space-3 theme.$falina-space-6;
+    border-radius: theme.$falina-radius-pill;
+    background: theme.$falina-color-accent;
+    color: theme.$falina-color-text-on-accent;
+    font-size: theme.$falina-font-size-sm;
+    font-weight: theme.$falina-font-weight-semibold;
+    letter-spacing: theme.$falina-letter-spacing-caps;
+  }
+
+  &__list {
+    display: grid;
+    gap: theme.$falina-space-3;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__card {
+    display: grid;
+    gap: theme.$falina-space-1;
+    padding: theme.$falina-space-4;
+    border: 1px solid theme.$falina-color-border;
+    border-radius: theme.$falina-radius-md;
+    background: theme.$falina-color-surface;
+    text-decoration: none;
+    transition: border-color 160ms ease, background 160ms ease;
+
+    &:hover,
+    &:focus-visible {
+      border-color: theme.$falina-color-accent;
+      background: theme.$falina-color-surface-elevated;
+    }
+  }
+
+  &__card-type {
+    color: theme.$falina-gold-400;
+    font-size: theme.$falina-font-size-xs;
+    letter-spacing: theme.$falina-letter-spacing-caps;
+    text-transform: uppercase;
+  }
+
+  &__card-title {
+    color: theme.$falina-color-text-primary;
+    font-family: theme.$falina-font-display;
+    font-size: theme.$falina-font-size-md;
+    font-weight: theme.$falina-font-weight-semibold;
+  }
+
+  &__card-summary {
+    color: theme.$falina-color-text-muted;
+    font-size: theme.$falina-font-size-sm;
+    line-height: theme.$falina-line-height-relaxed;
+  }
+
+  &__card-date {
+    color: theme.$falina-color-text-muted;
+    font-size: theme.$falina-font-size-xs;
+  }
+}

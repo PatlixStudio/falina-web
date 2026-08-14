@@ -1,49 +1,65 @@
 // Falina color tokens.
-// Ancient ritual × modern AI × luxury mobile — deep charcoal, warm ivory,
-// muted gold, coffee brown. Components must use these tokens, never raw hex.
+// Cosmic (deep-space indigo / violet / teal) × Ember (warm charcoal / gold).
+// Components must use these tokens, never raw hex.
+//
+// Every token resolves to a CSS custom property at runtime so the Ember theme
+// (html[data-theme="warm"]) can swap the whole palette without a rebuild.
+// The concrete values live in styles.scss (:root Cosmic / [data-theme="warm"]).
 
 // -- Raw palette ------------------------------------------------------------
-$falina-charcoal-950: #12100e;
-$falina-charcoal-900: #1a1714; // deep charcoal — primary background
-$falina-charcoal-800: #242019; // surface
-$falina-charcoal-700: #2e2922; // elevated surface
-$falina-charcoal-600: #3a342b;
+$falina-charcoal-950: var(--falina-charcoal-950);
+$falina-charcoal-900: var(--falina-charcoal-900); // deep charcoal — primary background
+$falina-charcoal-800: var(--falina-charcoal-800); // surface
+$falina-charcoal-700: var(--falina-charcoal-700); // elevated surface
+$falina-charcoal-600: var(--falina-charcoal-600);
 
-$falina-ivory-100: #f4ebdd; // warm ivory — primary text
-$falina-ivory-200: #eae0cf;
-$falina-ivory-300: #d9cfbc;
+$falina-ivory-100: var(--falina-ivory-100); // warm ivory — primary text
+$falina-ivory-200: var(--falina-ivory-200);
+$falina-ivory-300: var(--falina-ivory-300);
 
-$falina-gold-300: #dbc08c;
-$falina-gold-400: #c9a96a; // muted gold — accent
-$falina-gold-500: #b08f52;
-$falina-gold-600: #8f6f3c;
+$falina-gold-300: var(--falina-gold-300);
+$falina-gold-400: var(--falina-gold-400); // muted gold — accent
+$falina-gold-500: var(--falina-gold-500);
+$falina-gold-600: var(--falina-gold-600);
 
-$falina-coffee-600: #6b4a35; // coffee brown
-$falina-coffee-700: #553a2a;
-$falina-coffee-800: #402a1e;
+$falina-coffee-600: var(--falina-coffee-600); // coffee brown
+$falina-coffee-700: var(--falina-coffee-700);
+$falina-coffee-800: var(--falina-coffee-800);
 
-$falina-status-success: #7fb57f;
-$falina-status-warning: #d9a45b;
-$falina-status-error: #d96b5b;
+$falina-status-success: var(--falina-status-success);
+$falina-status-warning: var(--falina-status-warning);
+$falina-status-error: var(--falina-status-error);
+
+// RGB triplets (r, g, b) for rgba() compositions at runtime, e.g.
+// rgba(theme.$falina-gold-400-rgb, 0.12).
+$falina-charcoal-950-rgb: var(--falina-charcoal-950-rgb);
+$falina-charcoal-900-rgb: var(--falina-charcoal-900-rgb);
+$falina-ivory-100-rgb: var(--falina-ivory-100-rgb);
+$falina-gold-300-rgb: var(--falina-gold-300-rgb);
+$falina-gold-400-rgb: var(--falina-gold-400-rgb);
+$falina-gold-600-rgb: var(--falina-gold-600-rgb);
+$falina-coffee-600-rgb: var(--falina-coffee-600-rgb);
 
 // -- Semantic tokens --------------------------------------------------------
-$falina-color-background: $falina-charcoal-900;
-$falina-color-surface: $falina-charcoal-800;
-$falina-color-surface-elevated: $falina-charcoal-700;
-$falina-color-surface-tinted: $falina-coffee-800;
+$falina-color-background: var(--falina-color-background);
+$falina-color-surface: var(--falina-color-surface);
+$falina-color-surface-elevated: var(--falina-color-surface-elevated);
+$falina-color-surface-tinted: var(--falina-color-surface-tinted);
+$falina-color-panel: var(--falina-color-panel);
 
-$falina-color-text-primary: $falina-ivory-100;
-$falina-color-text-secondary: rgba($falina-ivory-100, 0.7);
-$falina-color-text-muted: rgba($falina-ivory-100, 0.5);
-$falina-color-text-on-accent: $falina-charcoal-950;
+$falina-color-text-primary: var(--falina-color-text-primary);
+$falina-color-text-secondary: var(--falina-color-text-secondary);
+$falina-color-text-muted: var(--falina-color-text-muted);
+$falina-color-text-on-accent: var(--falina-color-text-on-accent);
 
-$falina-color-accent: $falina-gold-400;
-$falina-color-accent-soft: rgba($falina-gold-400, 0.16);
-$falina-color-accent-strong: $falina-gold-300;
+$falina-color-accent: var(--falina-color-accent);
+$falina-color-accent-soft: var(--falina-color-accent-soft);
+$falina-color-accent-strong: var(--falina-color-accent-strong);
 
-$falina-color-border: rgba($falina-ivory-100, 0.12);
-$falina-color-border-strong: rgba($falina-gold-400, 0.35);
+$falina-color-border: var(--falina-color-border);
+$falina-color-border-strong: var(--falina-color-border-strong);
 
-$falina-color-success: $falina-status-success;
-$falina-color-warning: $falina-status-warning;
-$falina-color-error: $falina-status-error;
+$falina-color-success: var(--falina-color-success);
+$falina-color-warning: var(--falina-color-warning);
+$falina-color-error: var(--falina-color-error);
+$falina-color-error-rgb: var(--falina-color-error-rgb);

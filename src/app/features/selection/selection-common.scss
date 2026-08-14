@@ -1,0 +1,166 @@
+@use 'theme/index' as theme;
+
+.sel-page {
+  --background: #{radial-gradient(
+      ellipse 70% 45% at 50% -5%,
+      rgba(theme.$falina-gold-400-rgb, 0.18),
+      transparent 70%
+    ),
+    radial-gradient(
+      ellipse 55% 40% at 100% 100%,
+      rgba(theme.$falina-coffee-600-rgb, 0.1),
+      transparent 70%
+    ),
+    theme.$falina-color-background};
+}
+
+.sel {
+  display: flex;
+  flex-direction: column;
+  gap: theme.$falina-space-8;
+  max-width: 42rem;
+  margin: 0 auto;
+  padding: theme.$falina-space-8 theme.$falina-space-6 theme.$falina-space-12;
+
+  &__header {
+    display: flex;
+    flex-direction: column;
+    gap: theme.$falina-space-3;
+  }
+
+  &__back {
+    align-self: flex-start;
+    color: theme.$falina-color-text-muted;
+    font-size: theme.$falina-font-size-sm;
+    letter-spacing: theme.$falina-letter-spacing-caps;
+    text-decoration: none;
+    transition: color 200ms ease;
+
+    &:hover {
+      color: theme.$falina-color-accent;
+    }
+  }
+
+  &__title {
+    margin: 0;
+    font-family: theme.$falina-font-display;
+    font-size: theme.$falina-font-size-3xl;
+    color: theme.$falina-color-text-primary;
+  }
+
+  &__subtitle {
+    margin: 0;
+    color: theme.$falina-color-text-muted;
+    line-height: theme.$falina-line-height-relaxed;
+  }
+
+  &__group {
+    display: flex;
+    flex-direction: column;
+    gap: theme.$falina-space-4;
+  }
+
+  &__group-title {
+    margin: 0;
+    color: theme.$falina-color-text-secondary;
+    font-size: theme.$falina-font-size-sm;
+    letter-spacing: theme.$falina-letter-spacing-caps;
+    text-transform: uppercase;
+  }
+
+  &__chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: theme.$falina-space-3;
+  }
+
+  &__chip {
+    padding: theme.$falina-space-2 theme.$falina-space-4;
+    border: 1px solid theme.$falina-color-border;
+    border-radius: theme.$falina-radius-pill;
+    background: theme.$falina-color-surface;
+    color: theme.$falina-color-text-secondary;
+    font-size: theme.$falina-font-size-sm;
+    cursor: pointer;
+    transition:
+      border-color 200ms ease,
+      color 200ms ease,
+      background 200ms ease;
+
+    &:hover {
+      border-color: theme.$falina-color-accent;
+    }
+
+    &.is-selected {
+      border-color: theme.$falina-color-accent;
+      background: theme.$falina-color-accent-soft;
+      color: theme.$falina-color-accent-strong;
+    }
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(7.5rem, 1fr));
+    gap: theme.$falina-space-3;
+  }
+
+  &__tile {
+    display: flex;
+    flex-direction: column;
+    gap: theme.$falina-space-2;
+    padding: theme.$falina-space-4;
+    border: 1px solid theme.$falina-color-border;
+    border-radius: theme.$falina-radius-md;
+    background: theme.$falina-color-surface;
+    color: theme.$falina-color-text-primary;
+    text-align: left;
+    cursor: pointer;
+    transition:
+      border-color 200ms ease,
+      background 200ms ease;
+
+    &:hover {
+      border-color: theme.$falina-color-accent;
+    }
+
+    &.is-selected {
+      border-color: theme.$falina-color-accent;
+      background: theme.$falina-color-accent-soft;
+    }
+  }
+
+  &__tile-name {
+    font-family: theme.$falina-font-display;
+    font-size: theme.$falina-font-size-md;
+  }
+
+  &__tile-hint {
+    color: theme.$falina-color-text-muted;
+    font-size: theme.$falina-font-size-xs;
+    line-height: theme.$falina-line-height-relaxed;
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: center;
+    margin-top: theme.$falina-space-4;
+  }
+
+  &__begin {
+    padding: theme.$falina-space-4 theme.$falina-space-12;
+    border: none;
+    border-radius: theme.$falina-radius-pill;
+    background: theme.$falina-color-accent;
+    color: theme.$falina-color-text-on-accent;
+    font-size: theme.$falina-font-size-md;
+    font-weight: 600;
+    letter-spacing: theme.$falina-letter-spacing-caps;
+    cursor: pointer;
+    transition: opacity 200ms ease;
+
+    &:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+  }
+}

@@ -1,0 +1,43 @@
+<ion-content class="history">
+  <div class="history__inner">
+    <header class="history__header">
+      <h1 class="history__title">Your readings</h1>
+      <p class="history__subtitle">Every reading you finish is kept here.</p>
+    </header>
+
+    @if (loading()) {
+      <div class="history__empty">
+        <span class="history__empty-orb" aria-hidden="true"></span>
+        <p class="history__empty-body">Opening the journal…</p>
+      </div>
+    } @else if (error(); as message) {
+      <div class="history__empty">
+        <p class="history__empty-title">The journal is blank</p>
+        <p class="history__empty-body">{{ message }}</p>
+        <a class="history__empty-link" routerLink="/read">Begin a reading</a>
+      </div>
+    } @else if (items().length === 0) {
+      <div class="history__empty">
+        <span class="history__empty-orb" aria-hidden="true"></span>
+        <p class="history__empty-title">Nothing yet</p>
+        <p class="history__empty-body">
+          Complete your first reading and it will appear in this journal.
+        </p>
+        <a class="history__empty-link" routerLink="/read">Begin a reading</a>
+      </div>
+    } @else {
+      <ul class="history__list">
+        @for (item of items(); track item.id) {
+          <li class="history__item">
+            <a class="history__card" [routerLink]="['/reading', item.id]">
+              <span class="history__card-type">{{ typeLabel(item.type) }}</span>
+              <span class="history__card-title">{{ item.title }}</span>
+              <span class="history__card-summary">{{ item.summary }}</span>
+              <span class="history__card-date">{{ dateLabel(item.createdAt) }}</span>
+            </a>
+          </li>
+        }
+      </ul>
+    }
+  </div>
+</ion-content>
