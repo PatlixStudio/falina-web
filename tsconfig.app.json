@@ -8,7 +8,7 @@
   "exclude": ["src/test-setup.ts", "src/**/*.spec.ts"],
   "references": [
     {
-      "path": "../../libs/falina-shared"
+      "path": "../../libs/falina-shared/tsconfig.build.json"
     }
   ]
 }
